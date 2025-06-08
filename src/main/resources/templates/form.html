@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>記事追加</title>
+    </head>
+    <body>
+        <h1>記事追加</h1>
+        <form action="/submit" method="post" th:object="${article}">
+            URL: <input type="text" th:field="*{url}" required/><br/>
+            メモ: <input type="text" th:field="*{memo}"/><br/>
+            <input type="submit" value="保存"/>
+        </form>
+    </body>
+</html>

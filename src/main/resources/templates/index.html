@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>記事一覧</title>
+    </head>
+    <body>
+        <h1>記事一覧</h1>
+        <a href="/form">新規追加</a>
+        <ul>
+            <li th:each="article : ${articles}">
+                <a th:href="${article.url}" th:text="${article.title}"></a> - <span th:text="${article.memo}"></span>
+            </li>
+        </ul>
+    </body>
+</html>
