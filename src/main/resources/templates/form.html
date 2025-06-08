@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>記事追加</title>
+        <title>記事の追加</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
     </head>
     <body>
-        <h1>記事追加</h1>
+        <h1>記事の追加</h1>
         <form action="/submit" method="post" th:object="${article}">
             URL: <input type="text" th:field="*{url}" required/><br/>
             メモ: <input type="text" th:field="*{memo}"/><br/>
