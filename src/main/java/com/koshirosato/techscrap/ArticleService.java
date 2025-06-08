@@ -19,21 +19,25 @@ public class ArticleService {
         return repository.findAll();
     }
 
-    public void save(ArticleEntity article) {
+    public void save(ArticleEntity entity) {
         // 記事タイトル自動取得
-        if (article.getTitle() == null || article.getTitle().isEmpty()) {
+        if (entity.getTitle() == null || entity.getTitle().isEmpty()) {
             try {
-                String title = Jsoup.connect(article.getUrl())
+                String title = Jsoup.connect(entity.getUrl())
                     .userAgent("Mozilla")
                     .get()
                     .title();
-                article.setTitle(title);
+                entity.setTitle(title);
             } catch (IOException e) {
-                article.setTitle("タイトル取得失敗");
+                entity.setTitle("タイトル取得失敗");
             }
         }
+        // 重複した記事は登録できない
+        if (repository.findByUrl(entity.getUrl()).isPresent()) {
+            return;
+        }
         
-        repository.save(article);
+        repository.save(entity);
     }
 
     public void deleteArticleById(Long id) {

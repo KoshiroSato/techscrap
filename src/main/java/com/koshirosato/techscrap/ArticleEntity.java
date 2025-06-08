@@ -1,5 +1,6 @@
 package com.koshirosato.techscrap;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,8 @@ public class ArticleEntity {
     private Long id;
 
     private String title;
+    
+    @Column(unique = true)
     private String url;
     private String memo;
 
