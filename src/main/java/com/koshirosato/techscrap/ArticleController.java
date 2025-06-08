@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ArticleController {
@@ -16,8 +17,9 @@ public class ArticleController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("articles", service.findAll());
+    public String index(@RequestParam(name = "q", required = false) String keyword, Model model) {
+        model.addAttribute("articles", service.search(keyword));
+        model.addAttribute("keyword", keyword);
         return "index";
     }
 

@@ -5,6 +5,12 @@
     </head>
     <body>
         <h1>記事一覧</h1>
+
+        <form action="/" method="get">
+            <input type="text" name="q" placeholder="検索キーワード" th:value="${keyword}">
+            <button type="submit">検索</button>
+        </form>
+
         <a href="/form">新規追加</a>
         <ul>
             <li th:each="article : ${articles}">

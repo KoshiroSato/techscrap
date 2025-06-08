@@ -19,6 +19,13 @@ public class ArticleService {
         return repository.findAll();
     }
 
+    public List<ArticleEntity> search(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            return findAll();
+        }
+        return repository.search(keyword);
+    }
+
     public void save(ArticleEntity entity) {
         // 記事タイトル自動取得
         if (entity.getTitle() == null || entity.getTitle().isEmpty()) {
