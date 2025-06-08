@@ -9,6 +9,9 @@
         <ul>
             <li th:each="article : ${articles}">
                 <a th:href="${article.url}" th:text="${article.title}"></a> - <span th:text="${article.memo}"></span>
+                <form th:action="@{'/delete/' + ${article.id}}" method="post" style="display:inline;">
+                    <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                </form>
             </li>
         </ul>
     </body>
