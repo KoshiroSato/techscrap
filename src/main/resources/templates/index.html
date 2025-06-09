@@ -14,15 +14,20 @@
         </form>
 
         <a href="/form">新規追加</a>
+        <a href="/starred">★お気に入り</a> <!-- ★お気に入りページへのリンク -->
+
         <ul>
             <li th:each="article : ${articles}">
                 <div style="display: flex; align-items: center; gap: 1em;">
                     <img th:if="${article.ogImageUrl != null}" th:src="${article.ogImageUrl}" alt="thumbnail" style="width: 100px; height: auto; border-radius: 4px;">
                     <div>
-                        <a th:href="${article.url}" th:text="${article.title}"></a>  
+                        <a th:href="${article.url}" th:text="${article.title}"></a>
                         <div th:text="${article.memo}"></div>
                         <form th:action="@{'/delete/' + ${article.id}}" method="post" style="display:inline;">
                             <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                        </form>
+                        <form th:action="@{'/star/' + ${article.id}}" method="post" style="display:inline;">
+                            <button type="submit" th:text="${article.starred} ? '★' : '☆'"></button>
                         </form>
                     </div>
                 </div>

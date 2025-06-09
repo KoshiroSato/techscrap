@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -41,5 +42,18 @@ public class ArticleController {
     public String deleteArticle(@PathVariable Long id) {
         service.deleteArticleById(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/starred")
+    public String starred(Model model) {
+        model.addAttribute("articles", service.findStarred());
+        model.addAttribute("keyword", "★お気に入り");
+        return "index";
+    }
+
+    @PostMapping("/star/{id}")
+    public String toggleStar(@PathVariable Long id, @RequestHeader("Referer") String referer) {
+        service.toggleStar(id);
+        return "redirect:" + referer;
     }
 }

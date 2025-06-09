@@ -21,6 +21,9 @@ public class ArticleEntity {
     @Column(length = 4096)
     private String ogImageUrl;
 
+    @Column(nullable = false)
+    private boolean starred = false;
+
     // Getter / Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -32,4 +35,6 @@ public class ArticleEntity {
     public void setMemo(String memo) { this.memo = memo; }
     public String getOgImageUrl() { return ogImageUrl; }
     public void setOgImageUrl(String ogImageUrl) { this.ogImageUrl = ogImageUrl; }
+    public boolean getStarred() { return starred; }
+    public void setStarred(boolean starred) { this.starred = starred; }
 }

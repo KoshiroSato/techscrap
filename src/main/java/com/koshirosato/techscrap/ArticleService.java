@@ -50,4 +50,14 @@ public class ArticleService {
     public void deleteArticleById(Long id) {
         repository.deleteById(id);
     }
+
+    public void toggleStar(Long id) {
+        ArticleEntity entity = repository.findById(id).orElseThrow();
+        entity.setStarred(!entity.getStarred());
+        repository.save(entity);
+    }
+
+    public List<ArticleEntity> findStarred() {
+        return repository.findByStarredTrue();
+    }
 }
