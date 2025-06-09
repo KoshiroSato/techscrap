@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ArticleController {
+    
     private final ArticleService service;
 
     public ArticleController(ArticleService service) {

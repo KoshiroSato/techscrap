@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Long>{ 
+    
     Optional<ArticleEntity> findByUrl(String url);
 
     @Query("SELECT a FROM ArticleEntity a WHERE " + 

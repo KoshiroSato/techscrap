@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 
 public class OGPUtils {
     public static String fetchOGImage(String url) {
+        
         try {
             Document doc = Jsoup.connect(url)
                 .userAgent("Mozilla")
