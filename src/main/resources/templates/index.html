@@ -16,10 +16,16 @@
         <a href="/form">新規追加</a>
         <ul>
             <li th:each="article : ${articles}">
-                <a th:href="${article.url}" th:text="${article.title}"></a> - <span th:text="${article.memo}"></span>
-                <form th:action="@{'/delete/' + ${article.id}}" method="post" style="display:inline;">
-                    <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
-                </form>
+                <div style="display: flex; align-items: center; gap: 1em;">
+                    <img th:if="${article.ogImageUrl != null}" th:src="${article.ogImageUrl}" alt="thumbnail" style="width: 100px; height: auto; border-radius: 4px;">
+                    <div>
+                        <a th:href="${article.url}" th:text="${article.title}"></a>  
+                        <div th:text="${article.memo}"></div>
+                        <form th:action="@{'/delete/' + ${article.id}}" method="post" style="display:inline;">
+                            <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                        </form>
+                    </div>
+                </div>
             </li>
         </ul>
     </body>

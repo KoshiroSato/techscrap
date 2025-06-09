@@ -18,6 +18,9 @@ public class ArticleEntity {
     private String url;
     private String memo;
 
+    @Column(length = 4096)
+    private String ogImageUrl;
+
     // Getter / Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -27,4 +30,6 @@ public class ArticleEntity {
     public void setUrl(String url) { this.url = url; }
     public String getMemo() { return memo; }
     public void setMemo(String memo) { this.memo = memo; }
+    public String getOgImageUrl() { return ogImageUrl; }
+    public void setOgImageUrl(String ogImageUrl) { this.ogImageUrl = ogImageUrl; }
 }

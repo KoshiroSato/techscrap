@@ -31,6 +31,8 @@ public class ArticleController {
 
     @PostMapping("/submit")
     public String submit(@ModelAttribute ArticleEntity entity) {
+        String ogImageUrl = OGPUtils.fetchOGImage(entity.getUrl());
+        entity.setOgImageUrl(ogImageUrl);
         service.save(entity);
         return "redirect:/";
     }
