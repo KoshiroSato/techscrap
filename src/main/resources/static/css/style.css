@@ -57,3 +57,14 @@ li {
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    z-index: 1000; /* 必要に応じて前面に出す */
+}
