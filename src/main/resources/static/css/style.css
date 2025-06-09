@@ -66,5 +66,5 @@ li {
     text-align: center;
     padding: 10px;
     border-top: 1px solid #ccc;
-    z-index: 1000; /* 必要に応じて前面に出す */
+    z-index: 1000; 
 }
