@@ -18,4 +18,5 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, Long>{
     List<ArticleEntity> search(@Param("keyword") String keyword);
 
     List<ArticleEntity> findByStarredTrue();
+    List<ArticleEntity> findByStarredFalse();
 }
