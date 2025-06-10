@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class ArticleService {
     
@@ -71,7 +70,7 @@ public class ArticleService {
     public List<ArticleEntity> recommendSimilarArticles(int topN) {
         List<ArticleEntity> starred = repository.findByStarredTrue();
         List<ArticleEntity> unstarred = repository.findByStarredFalse(); 
-        // お気に入り記事がない場合はレコメンドしない
+        
         if (starred.isEmpty()) return Collections.emptyList();
 
          List<String> starredTexts = starred.stream()

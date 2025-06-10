@@ -19,18 +19,18 @@
 
         <ul>
             <li th:each="article : ${articles}">
-                <div style="display: flex; align-items: center; gap: 1em;">
-                    <img th:if="${article.ogImageUrl != null}" th:src="${article.ogImageUrl}" alt="thumbnail" style="width: 100px; height: auto; border-radius: 4px;">
+                <div class="article-item">
+                    <img th:if="${article.ogImageUrl != null}" th:src="${article.ogImageUrl}" alt="thumbnail" class="article-thumbnail">
                     <div>
                         <a th:href="${article.url}" th:text="${article.title}"></a>
                         <div th:text="${article.memo}"></div>
                         <div class="article-meta">
                             登録日: <span th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
                         </div>
-                        <form th:action="@{'/delete/' + ${article.id}}" method="post" style="display:inline;">
+                        <form th:action="@{'/delete/' + ${article.id}}" method="post" class="inline-form">
                             <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </form>
-                        <form th:action="@{'/star/' + ${article.id}}" method="post" style="display:inline;">
+                        <form th:action="@{'/star/' + ${article.id}}" method="post" class="inline-form">
                             <button type="submit" th:text="${article.starred} ? '★' : '☆'"></button>
                         </form>
                     </div>

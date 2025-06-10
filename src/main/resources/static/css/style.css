@@ -74,3 +74,19 @@ li {
     color: #666;
     margin-top: 4px;
 }
+
+.article-item {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.article-thumbnail {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.inline-form {
+    display: inline;
+}
