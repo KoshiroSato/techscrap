@@ -17,8 +17,9 @@ public class ArticleService {
     private final ArticleRepository repository;
     private final TextVectorizer vectorizer;
 
-    public ArticleService(ArticleRepository repository) {
+    public ArticleService(ArticleRepository repository, TextVectorizer vectorizer) {
         this.repository = repository;
+        this.vectorizer = vectorizer;
     }
 
     public List<ArticleEntity> findAll() {
