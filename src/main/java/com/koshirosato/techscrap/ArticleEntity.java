@@ -1,5 +1,9 @@
 package com.koshirosato.techscrap;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +29,10 @@ public class ArticleEntity {
     @Column(nullable = false)
     private boolean starred = false;
 
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
     // Getter / Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -38,4 +46,6 @@ public class ArticleEntity {
     public void setOgImageUrl(String ogImageUrl) { this.ogImageUrl = ogImageUrl; }
     public boolean getStarred() { return starred; }
     public void setStarred(boolean starred) { this.starred = starred; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

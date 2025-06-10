@@ -68,3 +68,9 @@ li {
     border-top: 1px solid #ccc;
     z-index: 1000; 
 }
+
+.article-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 4px;
+}
