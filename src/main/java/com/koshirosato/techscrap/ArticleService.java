@@ -1,7 +1,11 @@
 package com.koshirosato.techscrap;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class ArticleService {
     
     private final ArticleRepository repository;
+    private final TextVectorizer vectorizer;
 
     public ArticleService(ArticleRepository repository) {
         this.repository = repository;
@@ -60,5 +65,33 @@ public class ArticleService {
 
     public List<ArticleEntity> findStarred() {
         return repository.findByStarredTrue();
+    }
+
+    public List<ArticleEntity> recommendSimilarArticles(int topN) {
+        List<ArticleEntity> starred = repository.findByStarredTrue();
+        List<ArticleEntity> unstarred = repository.findByStarredFalse(); 
+        // お気に入り記事がない場合はレコメンドしない
+        if (starred.isEmpty()) return Collections.emptyList();
+
+         List<String> starredTexts = starred.stream()
+            .map(a -> a.getTitle() + " " + a.getMemo())
+            .collect(Collectors.toList());
+
+        String mergedStarredText = String.join(" ", starredTexts);
+
+        List<String> corpus = new ArrayList<>(starredTexts);
+        corpus.addAll(unstarred.stream()
+            .map(a -> a.getTitle() + " " + a.getMemo())
+            .collect(Collectors.toList()));
+
+        Map<String, Double> starredVec = vectorizer.tfidf(mergedStarredText, corpus);
+
+        return unstarred.stream()
+            .map(article -> Map.entry(article, vectorizer.cosineSimilarity(
+                starredVec, vectorizer.tfidf(article.getTitle() + " " + article.getMemo(), corpus))))
+            .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
+            .limit(topN)
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
     }
 }
