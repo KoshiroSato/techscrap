@@ -1,6 +1,9 @@
 package com.koshirosato.techscrap;
 
 import org.springframework.ui.Model;
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,7 +51,6 @@ public class ArticleController {
     @GetMapping("/starred")
     public String starred(Model model) {
         model.addAttribute("articles", service.findStarred());
-        model.addAttribute("keyword", "★お気に入り");
         return "index";
     }
 
@@ -56,5 +58,12 @@ public class ArticleController {
     public String toggleStar(@PathVariable Long id, @RequestHeader("Referer") String referer) {
         service.toggleStar(id);
         return "redirect:" + referer;
+    }
+
+    @GetMapping("/recommend")
+    public String recommend(Model model) {
+        List<ArticleEntity> recommended = service.recommendSimilarArticles(5);
+        model.addAttribute("articles", recommended);
+        return "index";
     }
 }
