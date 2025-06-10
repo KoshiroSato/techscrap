@@ -57,4 +57,9 @@ public class ArticleController {
         service.toggleStar(id);
         return "redirect:" + referer;
     }
+
+    @GetMapping("/recommend")
+    public String recommend(Model model) {
+        return "index";
+    }
 }
