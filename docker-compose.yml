@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+   article:
+     build: .
+     container_name: article
+     restart: always
+     volumes: 
+      - '.:/workspace/techscrap'
+     environment:
+      TZ: Asia/Tokyo
+     working_dir: '/workspace/techscrap'
+     stdin_open: true
+     tty: true
+     ports:
+      - '8080:8080'
+     command: ./mvnw spring-boot:run
