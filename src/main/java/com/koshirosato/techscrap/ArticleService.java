@@ -68,6 +68,11 @@ public class ArticleService {
     }
 
     public List<ArticleEntity> recommendSimilarArticles(int topN) {
+        /**
+         * お気に入り記事のテキスト(記事タイトル+メモ)とその他の記事のテキストを
+         * それぞれ形態素解析器を用いて単語に分割し（トークン化）、Tf-Idfでそれらを
+         * ベクトル化した後、コサイン類似度でスコアリングし上位N位を表示
+         */
         List<ArticleEntity> starred = repository.findByStarredTrue();
         List<ArticleEntity> unstarred = repository.findByStarredFalse(); 
         

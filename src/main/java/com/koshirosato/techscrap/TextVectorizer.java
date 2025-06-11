@@ -16,11 +16,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TextVectorizer {
-    /**
-     * お気に入り記事のテキスト(記事タイトル+メモ)とその他の記事のテキストを
-     * それぞれ形態素解析器を用いて単語に分割し（トークン化）、Tf-Idfでそれらを
-     * ベクトル化した後、コサイン類似度でスコアリングする
-     */
     
     private final JapaneseAnalyzer analyzer = new JapaneseAnalyzer();
 
