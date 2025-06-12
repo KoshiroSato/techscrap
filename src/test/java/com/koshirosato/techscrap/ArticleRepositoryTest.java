@@ -16,15 +16,15 @@ public class ArticleRepositoryTest {
 
     @Test
     void testSaveAndFind() {
-        var ex_url = "http://example.com";
+        var exUrl = "http://example.com";
 
-        ArticleEntity article = new ArticleEntity();
-        article.setTitle("test title");
-        article.setUrl(ex_url);
-        article.setMemo("test memo");
-        repository.save(article);
+        ArticleEntity entity = new ArticleEntity();
+        entity.setTitle("test title");
+        entity.setUrl(exUrl);
+        entity.setMemo("test memo");
+        repository.save(entity);
 
-        Optional<ArticleEntity> result = repository.findByUrl(ex_url);
+        Optional<ArticleEntity> result = repository.findByUrl(exUrl);
         assertTrue(result.isPresent());
     }
 }
