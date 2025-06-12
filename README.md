@@ -8,6 +8,12 @@
 
 ![overview.png](img/overview.png)
 
+## Prerequisite
+
+- Java 17
+
+- Docker, Docker Compose
+
 ## Usage
 
 DBのユーザー名とパスワードを環境変数として`.env`で用意する。
@@ -23,4 +29,10 @@ export DB_PASSWORD=password
 
 ```
 docker-compose up -d --build
+```
+
+## Running Tests
+
+```
+./mvnw test
 ```
