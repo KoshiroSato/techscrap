@@ -35,11 +35,17 @@ public class ArticleController {
     }
 
     @PostMapping("/submit")
-    public String submit(@ModelAttribute ArticleEntity entity) {
-        String ogImageUrl = OGPUtils.fetchOGImage(entity.getUrl());
-        entity.setOgImageUrl(ogImageUrl);
-        service.save(entity);
-        return "redirect:/";
+    public String submit(@ModelAttribute ArticleEntity entity, Model model) {
+        try {
+            String ogImageUrl = OGPUtils.fetchOGImage(entity.getUrl());
+            entity.setOgImageUrl(ogImageUrl);
+            service.save(entity);
+            return "redirect:/";
+        } catch (Exception e) {
+            model.addAttribute("article", entity);
+            model.addAttribute("errorMessage", "無効なURLです。正しいURLを入力してください。");
+            return "form";
+        }
     }
 
     @PostMapping("/delete/{id}")

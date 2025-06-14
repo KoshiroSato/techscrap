@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1>記事の追加</h1>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></div>
         <form action="/submit" method="post" th:object="${article}">
             URL: <input type="text" th:field="*{url}" required/><br/>
             メモ: <input type="text" th:field="*{memo}"/><br/>
